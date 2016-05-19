@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body role="document">
+
+        {{ include('default/navigation.html.twig') }}
+    
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1></h1>
+        <p>All Tasks are listed in following table. Tasks data can be edited, added and deleted on this page.</p>
+        <p></p>
+      </div>
+
+      <div class="page-header">
+        <h1>Tasks</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Task Owner</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+              <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                 <td>{{ task.description }}</td>
+                <td>{{ task.duedate|date("d/m/Y") }}</td>
+                <td>{{ task.user.name }}</td>
+                <td> <a href="{{ app.request.getSchemeAndHttpHost() }}/app/task/{{ task.id }}/edit"><icon class="glyphicon glyphicon-edit btn-sm btn-primary"><span>&nbsp;Edit</span></icon></a>&nbsp;<icon class="glyphicon glyphicon-exclamation-sign btn-danger btn-sm"><span>&nbsp;Delete</span></icon</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+  
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+  </body>
+{% endblock %}

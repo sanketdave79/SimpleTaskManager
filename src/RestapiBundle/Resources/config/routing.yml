@@ -1,0 +1,34 @@
+get_all_users:
+    type: rest
+    pattern: /users
+    defaults: {_controller: "RestapiBundle:Users:all"}
+    
+rest_get_user:
+    type: rest
+    pattern: /user/{id}
+    defaults: {_controller: "RestapiBundle:Users:getuserinfo"}
+    requirements:
+        _method: GET
+        id: "\d+"
+
+get_all_tasks:
+    type: rest
+    parent: users
+    pattern: /tasks
+    defaults: {_controller: "RestapiBundle:Tasks:all"}
+    
+get_user_tasks:
+    pattern: /user/{id}/tasks
+    defaults: {_controller: "RestapiBundle:Tasks:gettasks"}
+    requirements:
+        _method: GET
+        id: "\d+"
+    
+get_task:
+    type: rest
+    pattern: /task/{id}
+    defaults: {_controller: "RestapiBundle:Tasks:gettask"}
+    requirements:
+        _method: GET
+        id: "\d+"
+    

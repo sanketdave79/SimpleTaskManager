@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Control Panel {% endblock %}</title>
+        {% block stylesheets %}
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+{% endblock %}
+
+
+       <!-- <link rel="icon" type="image/x-icon" href="" /> -->
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+          
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,38 @@
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{# {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <body role="document">
+
+        {{ include('default/navigation.html.twig') }}
+        
+         <div class="container-fluid" style="padding: 90px 50px 50px 50px;">
+        
+             {{ form_start(form) }}
+             {{ form_widget(form) }}
+             {{ form_rest(form) }}
+             {{ form_end(form) }}
+  
+         </div>
+        
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+   
+    
+  </body>
+{% endblock %}
+
+
+
+

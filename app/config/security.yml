@@ -1,0 +1,90 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory: ~
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+        
+                
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                provider: our_db_provider
+                check_path: auth_login_check
+                login_path: auth_login
+            anonymous: true
+
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+        login_firewall:
+          pattern: ^/app/login$
+          anonymous: ~
+        secured_area:
+            form_login:
+                login_path: /app/login
+                check_path: /app/login_check
+                csrf_provider: security.csrf.token_manager
+                provider: our_db_provider
+        
+                
+                
+           
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            
+            #anonymous: ~
+            
+              
+            form_login:
+                login_path: /app/login
+                check_path: /app/login_check
+                csrf_provider: security.csrf.token_manager
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+            logout: 
+               path:    /app/logout
+               target:  /app/login
+               success_handler:  ~
+               invalidate_session: true
+               delete_cookies:
+                 name:
+                   path:  null
+                   domain: null
+               handlers: []
+                
+    access_control:
+    - { path: ^/app/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+    - { path: ^/, roles: ROLE_USER }
+   
+    
+    
